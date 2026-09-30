@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>머스태치 기본 문법</h1>
+    <!--  HTML 주석 :  브라우저의 페이지 소스 보기에 그대로 보입니다.  -->
+    {{! 머스태치 주석 : 서버에서 지워져 브라우저에 전달되지 않는다.}}
+
+    <h2>1. 값 출력</h2>
+    <p>문자열 : {{stringValue}}</p>
+    <p>숫자 : {{intValue}}</p>
+
+    <h2>2. 조건(섹션, 반전 섹션)</h2>
+    {{#isLogin}}
+        <p>로그인 상태입니다.(true일 때 보임)</p>
+    {{/isLogin}}
+    {{^isLogin}}
+        <p>로그인이 필요합니다.(false일 때 보임)</p>
+    {{/isLogin}}
+
+    {{#notice}}
+        {{notice}} : 값이 있을 때 변수에 출력됨
+    {{/notice}}
+
+    {{^emptyList}}
+        <p>데이터가 없습니다. (빈 리스트는 거짓으로 취급)</p>
+    {{/emptyList}}
+
+    <h2>3. 반복</h2>
+    {{! 키 값이 없는 반복문은 점(.)만 찍으면 된다.}}
+    <ul>
+        {{#fruits}}
+            <li>{{.}}</li>
+        {{/fruits}}
+    </ul>
+
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+        </tr>
+        {{#users}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{age}}</td>
+            </tr>
+        {{/users}}
+    </table>
+
+    <h2>4. 점(.)으로 안쪽 값 꺼내기</h2>
+    <p>직업 : {{info.job}} , 지역 : {{info.city}}</p>
+
+    <h2>5. 이스케이프 비교</h2>
+    <p>중괄호 2개 : {{htmlContent}}</p>
+    {{! 중괄호 2개는 html 해석을 안하고, 3개를 사용해야 html 형태로 랜더링 해준다.
+    하지만 3개를 사용하면 보완에 취약점이 생길 수 있어 사용하지 않는게 좋다.}}
+    <p>중괄호 3개 : {{{htmlContent}}}</p>
+</body>
+</html>
