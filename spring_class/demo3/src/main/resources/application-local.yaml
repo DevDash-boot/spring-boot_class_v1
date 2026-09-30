@@ -2,4 +2,4 @@ spring:
   application:
     name: demo3
   profiles:
-    active: dev
+    active: local
